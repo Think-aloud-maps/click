@@ -440,12 +440,20 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(entry)
                 });
+                
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
         
                 console.log('✅ Data logged successfully:', entry);
             } catch (error) {
-                console.error('❌ Error logging data:', error);
+                if (error.message.includes("Failed to fetch")) {
+                    console.error("❌ Server unreachable. Data logging failed.");
+                } else {
+                    console.error("❌ Error logging data:", error);
+                }
             }
-        }
+        }        
         
         // Function to calculate the distance between two points using the Haversine formula
         function haversineDistance(coords1, coords2) {
