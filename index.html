@@ -7,10 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <!-- Include Mapbox GL JS library -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'></script>
+     <!-- Adding charging station icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Include Mapbox GL JS CSS -->
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css' rel='stylesheet' />
-    <!-- Adding charging station icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
         /* CSS styles for the body, map, manual, log-box, buttons, and markers */
@@ -188,16 +188,14 @@
         const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/navigation-day-v1',
-            center: [-95.51987306452574,29.657731734776377],
-            zoom: -1
+            center: [-106.71067639846083, 35.111539482823545],
+            zoom: 2
         });
-
-        // Define geographical bounds for the map
         const bounds = [
-            [-95.950936, 29.382870],
-            [-95.001648, 29.890314]
+            [-108.104433, 34.609636],
+            [-105.541900, 35.903468]
         ];
-        map.setMaxBounds(bounds);
+        map.setMaxBounds(bounds)
 
         // Create and add markers for start and end points
         const startMarker = new mapboxgl.Marker({ color: '#3887be' }).setLngLat([-122.662323, 45.523751]).addTo(map);
@@ -207,20 +205,20 @@
         let startPoint = null;
         let endPoint = null;
         let poiMarkers = [];
-        let mapNum = 23; // SET MAP NUMBER    
+        let mapNum = 2; // SET MAP NUMBER    
 
         // Function to add a marker at a specific point on the map
         const instructions = [
-            { title: "Current Time", info: "7:37 AM." },
-            { title: "Address of Origin", info: "351 Post Rd, Rosharon, TX 77583." },
-            { title: "Address of Destination", info: "13551 Westpark Dr, Houston, TX 77082." },
-            { title: "Distance to Destination", info: "24.33 miles." },
-            { title: "Estimated Time to Destination", info: "33 minutes." },
-            { title: "State of Charge of Battery", info: "15% charge." },
-            { title: "Range of Current Battery", info: "45 minutes." },
-            { title: "Estimated Drive Distance with Current Charge", info: "30 miles." },
+            { title: "Current Time", info: "7:59 AM." },
+            { title: "Address of Origin", info: "Nambe St, Kewa Pueblo, NM 87052." },
+            { title: "Address of Destination", info: "175 Calle del Llano, Laguna, NM 87026." },
+            { title: "Distance to Destination", info: "75.26 miles." },
+            { title: "Estimated Time to Destination", info: "75 minutes." },
+            { title: "State of Charge of Battery", info: "50% charge." },
+            { title: "Range of Current Battery", info: "150 minutes." },
+            { title: "Estimated Drive Distance with Current Charge", info: "113 miles." },
             { title: "Type of Charging Socket", info: "J1772." },
-            { title: "kW Needed to Fully Charge Your Car", info: "51 kW." }
+            { title: "kW Needed to Fully Charge Your Car", info: "30 kW." }
         ];
 
 
@@ -228,86 +226,81 @@
         // SET BOTH SETS OF CHARGING STATION INFO BELOW
         const chargingStations = [
             {
-                coordinates: [-95.626936, 29.592870],
-                imageUrl: 'https://photos.plugshare.com/photos/638842.jpg',
-                name: 'First Colony Mall - Lululemon',
+                coordinates: [-106.809786, 35.059937],
+                imageUrl: 'https://photos.plugshare.com/photos/1306862.jpg',
+                name: 'Santa Ana Star Center',
 
-                location: '16535 Southwest Fwy STE 2004, Sugar Land, TX 77479, USA',
-                originDistance: '13.12',
-                originTime: '30',
-                destDistance: '15.81',
-                destTime: '21',
+                location: '1016 US-550, Bernalillo 87004',
+                originDistance: '49.72',
+                originTime: '51',
+                destDistance: '28.46',
+                destTime: '31',
 
                 waitTime: [
                         { type: 'J1772', value: '0' }
                     ],
                 plugNumb: [
-                        { type: 'J1772', value: '2' }
+                        { type: 'J1772', value: '4' }
                     ],    
                 chargeTime: [
-                        { type: 'J1772', value: '410' }
+                        { type: 'J1772', value: '278' }
                     ],
                 socketAvalability: [
-                        { type: 'J1772', value: '1' }
+                        { type: 'J1772', value: '4' }
                     ],
 
-                energySource: '60% grid, 40% solar',
+                energySource: '66% grid, 34% renewable',
 
-                chargingFee: '$0.00',
-                chargingFeeRate: 'for any amount of power',
+                chargingFee: '$2.00',
+                chargingFeeRate: 'per hour',
                 parkingFee: '$0.00',
                 parkingFeeRate: 'for any amount of time',
 
                 coffee: 'Yes. <br><br> There is a coffee shop in walking distance 0.1 miles away.',
-                grocery: 'Yes. <br><br> There is a grocery store in walking distance 1 mile away.',
-                sportsClothes: 'Yes. <br><br> There is a sports or clothing store in walking distance 0.1 miles away.',
+                grocery: 'No. <br><br> There is no grocery store in walking distance.',
+                sportsClothes: 'No. <br><br> There is no sports or clothing store in walking distance.',
                 
-                rating: '★ ★ ★ ✰ ✰',
-                ratingNum: '36',
-                ratingExact: '3.0'
+                rating: '★ ★ ★ ★ ★',
+                ratingNum: '18',
+                ratingExact: '4.7'
             },
             {
-                coordinates: [-95.466648, 29.710314],
-                imageUrl: 'https://lh5.googleusercontent.com/p/AF1QipOk9QNeKXYR4v2l6TcCg1RtpVpW8a8UmRl5yVQ=w408-h544-k-no',
-                name: 'Atrium Regency Apartments',
+                coordinates: [-106.559725, 35.323255],
+                imageUrl: 'https://photos.plugshare.com/photos/811895.jpg',
+                name: 'Enchanted Trails RV Park & Trading Post',
 
-                location: '5655 Glenmont Dr, Houston, TX 77081, USA',
-                originDistance: '18.01',
-                originTime: '32',
-                destDistance: '11.42',
-                destTime: '20',
-
+                location: '14305 Central Ave NW, Albuquerque, NM 87121, USA',
+                originDistance: '24.04',
+                originTime: '28',
+                destDistance: '54.49',
+                destTime: '55',
                 
                 waitTime: [
-                        { type: 'J1772', value: '0' },
-                        { type: 'test-NEMA', value: '0' }
+                        { type: 'NEMA', value: '37' }
                     ],
                 plugNumb: [
-                        { type: 'J1772', value: '4' },
-                        { type: 'test-NEMA', value: '2' }
-                    ],
+                        { type: 'NEMA', value: '2' }
+                    ],    
                 chargeTime: [
-                        { type: 'J1772', value: '400' },
-                        { type: 'test-NEMA', value: '300' }
+                        { type: 'NEMA', value: '278' }
                     ],
                 socketAvalability: [
-                        { type: 'J1772', value: '4' },
-                        { type: 'test-NEMA', value: '2' }
+                        { type: 'NEMA', value: '0' }
                     ],        
 
-                energySource: '100% grid, 0% renewable',
+                energySource: '48% grid, 52% renewable',
 
-                chargingFee: '$0.49',
-                chargingFeeRate: 'per kWh',
+                chargingFee: '$10.00',
+                chargingFeeRate: 'per day',
 
                 parkingFee: '$0.00',
                 parkingFeeRate: 'for any amount of time',
 
-                coffee: 'Yes. <br><br> There is a coffee shop in walking distance 1 mile away.',
-                grocery: 'Yes.  <br><br> There is a grocery store in walking distance 0.2 miles away.',
-                sportsClothes: 'Yes. <br><br> There is a sports or clothing store in walking distance 1.7 miles away.',
+                coffee: 'No. <br><br> There are no coffee shops in walking distance.',
+                grocery: 'No. <br><br> There are no grocery stores in walking distance.',
+                sportsClothes: 'No. <br><br> There are no sports or clothing stores in walking distance.',
                 
-                rating: '',
+                rating: '',  
                 ratingNum: '0',
                 ratingExact: '0.0'
             }
@@ -387,47 +380,78 @@
         }
         */
 
+        /*
         function getUserIdFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('userID');
-        console.log('User ID ATTEMPED');
+            const params = new URLSearchParams(window.location.search);
+            console.log('User ID ATTEMPTED');  // ✅ Now this will execute
+            return params.get('userID');  // Extract userID from the URL
         }
-
+        
         const userId = getUserIdFromUrl();
-        console.log('User Id:', userId);
-
-        function logData(actionType, chargingStation, button, coordinates, map) {
-
-            /*
-        const entry = {
-            userId: userId,
-            timestamp: new Date().toISOString(),
-            actionType: actionType,
-            chargingStation: chargingStation,
-            button: button,
-            coordinates: coordinates,
-            map: map
-        };
-
-        fetch('http://localhost:3000/api/logData', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(entry)
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
-            }
-            return response.json();
-        })
-        .then(data => console.log('Data logged:', data))
-        .catch(error => console.error('Error logging data:', error));
-
-        console.log("Data logged:", entry);
+        console.log('User Id:', userId);  // Log the extracted userID
         */
-        }
+        
+        /*
+        function logData(actionType, chargingStation, button, coordinates, map) {
+            const entry = {
+                //userId: userId,
+                timestamp: new Date().toISOString(),
+                actionType: actionType,
+                chargingStation: chargingStation,
+                button: button,
+                coordinates: coordinates,
+                map: map
+            };
+
+            fetch('http://localhost:3000/api/logData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(entry)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                return response.json();
+            })
+            .then(data => console.log('Data logged:', data))
+            .catch(error => console.error('Error logging data:', error));
+
+            console.log("Data logged:", entry);
+        }*/
+
+        async function logData(actionType, chargingStation, button, coordinates, map) {
+            const entry = {
+                timestamp: new Date().toISOString(),
+                actionType,
+                chargingStation,
+                button,
+                coordinates,
+                map
+            };
+        
+            try {
+                const response = await fetch('http://localhost:3000/api/logData', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(entry)
+                });
+        
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
+        
+                console.log('✅ Data logged successfully:', entry);
+            } catch (error) {
+                if (error.message.includes("Failed to fetch")) {
+                    console.error("❌ Server unreachable. Data logging failed.");
+                } else {
+                    console.error("❌ Error logging data:", error);
+                }
+            }
+        }        
 
 
         // Function to calculate the distance between two points using the Haversine formula
@@ -494,43 +518,47 @@
 
         let flag = 1;
 
-        // Function to add charging stations to the map
-        function addChargingStations() {
-            chargingStations.forEach(station => {
-                const el = document.createElement('div');
-                el.className = 'marker';
-                el.style.display = 'flex';
-                el.style.flexDirection = 'column';
-                el.style.alignItems = 'center';
+         // Array to store existing markers for clearing later
+         let markers = [];
 
-                // Create an icon element
-                const icon = document.createElement('i');
-                icon.className = 'fa-solid fa-charging-station';
-                icon.style.fontSize = '40px';  // Set icon size
-                icon.style.color = flag ? '#9B7A01' : '#303030'; // Toggle color
-                flag = !flag;
-                el.appendChild(icon);
+// Function to add charging stations to the map
+function addChargingStations() {
+    chargingStations.forEach(station => {
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
+        el.style.alignItems = 'center';
 
-                // Create a label element for the charging station name
-                const label = document.createElement('div');
-                label.innerText = station.name; // Ensure each station has a `name` property
-                label.style.fontSize = '14px';
-                label.style.color = '#ffffff';
-                label.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-                label.style.padding = '4px 8px';
-                label.style.borderRadius = '4px';
-                label.style.marginTop = '4px'; // Space between icon and label
-                label.style.textAlign = 'center';
+        // Create an icon element
+        const icon = document.createElement('i');
+        icon.className = 'fa-solid fa-charging-station';
+        icon.style.fontSize = '40px';  // Set icon size
+        icon.style.color = flag ? '#9B7A01' : '#303030'; // Toggle color
+        flag = !flag;
+        el.appendChild(icon);
 
-                // Append label below the icon
-                el.appendChild(label);
+        // Create a label element for the charging station name
+        const label = document.createElement('div');
+        label.innerText = station.name; // Ensure each station has a `name` property
+        label.style.fontSize = '14px';
+        label.style.color = '#ffffff';
+        label.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        label.style.padding = '4px 8px';
+        label.style.borderRadius = '4px';
+        label.style.marginTop = '4px'; // Space between icon and label
+        label.style.textAlign = 'center';
 
-                // Add marker to the map with icon centered on the location
-                new mapboxgl.Marker({ element: el, anchor: 'center' })
-                    .setLngLat(station.coordinates)
-                    .addTo(map);
-            });
-        }
+        // Append label below the icon
+        el.appendChild(label);
+
+        // Add marker to the map with icon centered on the location
+        new mapboxgl.Marker({ element: el, anchor: 'center' })
+            .setLngLat(station.coordinates)
+            .addTo(map);
+    });
+}
+
     
 
         // Function to generate popup content for charging stations
@@ -538,12 +566,19 @@
             const encodedImageUrl = encodeURIComponent(station.imageUrl);
 
             let waitTimeDetails = station.waitTime.map(item => `The estimated wait time of socket ${item.type} is ${item.value} minutes.`).join('<br><br>');
+            //let plugDetails = station.plugNumb.map(item => `There are ${item.value} number of socket type ${item.type}.`).join('<br><br>');
             let chargeTimeDetails = station.chargeTime.map(item => `The estimated charging time of socket ${item.type} to fully charge your car is ${item.value} minutes.`).join('<br><br>');
+            //let socketAvailabilityDetails = station.socketAvalability.map(item => `There are ${item.value} available number of socket type ${item.type}.`).join('<br><br>');
             let plugDetails = station.plugNumb.map(item => {
                 let availability = station.socketAvalability.find(availItem => availItem.type === item.type);
                 let value = Number(item.value); // Convert to a number if necessary
                 return `There ${value === 1 ? 'is' : 'are'} ${value} ${value === 1 ? 'socket' : 'sockets'} of type ${item.type} (${availability ? availability.value : 0} available).`;
             }).join('<br><br>');
+
+           
+
+
+
 
             return `
                     <h3 style="font-size: 20px; margin-top: 0; margin-bottom: 10px;">${station.name}</h3>
@@ -910,7 +945,7 @@
                         },
                         geometry: {
                             type: 'Point',
-                            coordinates: [-95.45314239482269,29.512586594797554]
+                            coordinates: [-106.36291418895178,35.51308985588946]
                         }
                     }
                 ]
@@ -929,7 +964,7 @@
                         },
                         geometry: {
                             type: 'Point',
-                            coordinates: [-95.62512026111936,29.719823198000867]
+                            coordinates: [-107.15965707345553,34.94286701029395]
                         }
                     }
                 ]
@@ -939,8 +974,8 @@
         // Add route time/distance to instructions & update charging station details
         map.on('load', async () => {
             await getRoute(0); // Ensure this is awaited properly
-            // await updateAndDisplayRouteInstructions();  // Ensure this is awaited properly
-            // await updateChargingStationDetails();  // Ensure this is awaited properly
+            //await updateAndDisplayRouteInstructions();  // Ensure this is awaited properly
+            //await updateChargingStationDetails();  // Ensure this is awaited properly
             addChargingStations();  // You might need to re-add stations to reflect updated data
         });
 
@@ -948,11 +983,14 @@
         map.on('load', () => {
             // Event listener for map clicks
             map.on('click', (event) => {
+                // Prevent default behavior (e.g., page reload)
+                //event.preventDefault();
+                
                 const clickCoords = [event.lngLat.lng, event.lngLat.lat];
-                logData(`Map Clicked`, null, null, clickCoords, mapNum);
+                //logData(`Map Clicked`, null, null, clickCoords, mapNum);
                 console.log(`Map clicked at: ${clickCoords}`);
 
-                const bufferRadius = 6; // Buffer radius in kilometers
+                const bufferRadius = 5; // Buffer radius in kilometers
 
                 if(!checkBufferZone(clickCoords, chargingStations[0].coordinates, bufferRadius) && !checkBufferZone(clickCoords, chargingStations[1].coordinates, bufferRadius)) {
                     removeRoutes();
@@ -1038,6 +1076,13 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent default form submission
+        });
+    </script>
+
 </body>
 
 </html>
